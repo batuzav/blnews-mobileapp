@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export default function News() {
-  return (
-    <View>
-      <Text> Noticias</Text>
-    </View>
-  );
+class News extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text> Noticias</Text>
+      </View>
+    );
+  }
 }

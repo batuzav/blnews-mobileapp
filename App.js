@@ -42,13 +42,15 @@ export default function App(props) {
 async function loadResourcesAsync() {
   // console.log("ejecutandose LoadResources");
   await Promise.all([
-    // Font.loadAsync({
-    //   // This is the font that we are using for our tab bar
-    //   ...Ionicons.font,
-    //   // We include SpaceMono because we use it in HomeScreen.js. Feel free to
-    //   // remove this if you are not using it in your app
-    //   // "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
-    // }),
+    Font.loadAsync({
+      //   //   // This is the font that we are using for our tab bar
+      //   //   ...Ionicons.font,
+      //   //   // We include SpaceMono because we use it in HomeScreen.js. Feel free to
+      //   //   // remove this if you are not using it in your app
+      "body-logic": {
+        uri: require("./assets/fonts/Lucifer-Sans-Condensed-SemiBold.otf"),
+      },
+    }),
   ]);
 }
 
