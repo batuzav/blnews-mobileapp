@@ -6,6 +6,7 @@ const initialState = {
   loading: false,
   isSocketConnected: false,
   token: "",
+  tokkenApp: "",
 };
 
 const App = (state = initialState, action) => {

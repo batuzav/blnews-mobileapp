@@ -8,7 +8,8 @@ import {
 import { Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
 import { login as loginapi, checkAuth } from "../../store/actions/app";
 
 import { ShowPasswordControl } from "../../components/input";
@@ -33,6 +34,7 @@ class Screen extends React.Component {
       inputPassMask: "",
       loginDisabled: false,
       showPassword: false,
+      tokkenApp: "",
       // navigation: useNavigation(),
     };
   }
@@ -44,17 +46,42 @@ class Screen extends React.Component {
       });
     }
 
-    console.log("props en el login", props);
+    // console.log("props en el login", props);
     return null;
   }
-  componentDidMount() {}
-  login = () => {
+  registerForPushNotificationsAsync = async () => {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    let finalStatus = existingStatus;
+    if (existingStatus !== "granted") {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+    if (finalStatus !== "granted") {
+      return;
+    }
+
+    try {
+      let tokkenApp = await Notifications.getExpoPushTokenAsync();
+      console.log("tokkenapp", tokkenApp);
+      this.setState({ tokkenApp });
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+  async componentDidMount() {}
+  login = async () => {
+    await this.registerForPushNotificationsAsync();
     this.setState({ loginDisabled: true });
     const obj = {
       dibNumber: this.state.inputDIB,
       password: this.state.inputPass,
+      tokkenApp: this.state.tokkenApp,
     };
-    if (obj.dibNumber !== "" && obj.password !== "") {
+    console.log("stateTokken", this.state.tokkenApp);
+    console.log("OBJ", obj);
+    if (obj.dibNumber !== "" && obj.password !== "" && obj.tokkenApp !== "") {
       this.props.loginapi(obj);
     }
   };

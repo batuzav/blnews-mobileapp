@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import News from "../screens/News";
+import NewsDetails from "../screens/NewsDetails";
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,13 @@ export default function NewsStack() {
       <Stack.Screen
         name="news"
         component={News}
-        options={{ title: "Noticias" }}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="newsDetails"
+        component={NewsDetails}
+        options={{ title: "Detalles" }}
       />
     </Stack.Navigator>
   );

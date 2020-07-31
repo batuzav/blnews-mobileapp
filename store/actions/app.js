@@ -1,4 +1,8 @@
-import { loginQuery, checkAuthQuery } from "../../services/auth";
+import {
+  loginQuery,
+  checkAuthQuery,
+  updateTokkenAppQuery,
+} from "../../services/auth";
 import { apiCall } from "../../services/api";
 
 import { syncUserData } from "./user";
@@ -32,7 +36,6 @@ export const socketDisconnectedDispatcher = () => ({
 });
 
 export const login = (data) => {
-  console.log("entro al login");
   return async (dispatch, store) => {
     dispatch(serverCall());
     try {
@@ -64,6 +67,30 @@ export const checkAuth = () => {
         console.log("response: ", response.data.data.checkLogin);
         if (response.data.data.checkLogin.isAuth === false)
           dispatch(loginReset());
+      }
+    } catch (e) {
+      dispatch(serverError({ message: "Error, intenta más tarde" }));
+    }
+  };
+};
+
+export const updateTokken = (tokkenApp) => {
+  return async (dispatch, store) => {
+    try {
+      const { token } = store().app;
+      const { _id } = store().user;
+
+      const response = await apiCall(
+        updateTokkenAppQuery({ id: _id, tokkenApp: "KINGCRIMSON" })
+      );
+      console.log("repose: ", response.data.data.updateUserTokkenApp);
+      if (response.data.data) {
+        const userUpdate = response.data.data.updateUserTokkenApp;
+        console.log("bay", userUpdate);
+        dispatch(loginSuccess(token));
+        console.log("letras");
+        dispatch(syncUserData(response.data.data.login.updateUserTokkenApp));
+        console.log("user: ", store().user);
       }
     } catch (e) {
       dispatch(serverError({ message: "Error, intenta más tarde" }));

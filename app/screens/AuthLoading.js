@@ -24,7 +24,7 @@ class AuthLoadingScreen extends React.Component {
     };
   }
   static getDerivedStateFromProps(props, state) {
-    console.log("Entro al getDerivedStatedFromsProps", props);
+    // console.log("Entro al getDerivedStatedFromsProps", props);
     if (props.isLogged) {
       console.log("ENTRO AL LOGEED DEL LOADING EN GET");
       socketInit({

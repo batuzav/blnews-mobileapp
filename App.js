@@ -26,7 +26,7 @@ export default function App(props) {
       />
     );
   } else {
-    console.log("store en el App.js: ", store.getState());
+    // console.log("store en el App.js: ", store.getState());
     return (
       <ApplicationProvider mapping={mapping} theme={theme}>
         <Provider store={store}>
