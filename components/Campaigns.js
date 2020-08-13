@@ -6,9 +6,11 @@ import {
   View,
   ScrollView,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import { Layout, Text, Card } from "@ui-kitten/components";
 import { Icon } from "react-native-elements";
+import { H1 } from "../components/MyText";
 
 export const Item = ({ img, action, title, subtitle }) => {
   return (
@@ -22,32 +24,61 @@ export const Item = ({ img, action, title, subtitle }) => {
           borderRadius: 5,
           paddingVertical: 10,
           backgroundColor: "white",
+          height: Dimensions.get("window").height / 4,
         }}
       >
         {img ? (
           <Image
             style={{
-              width: 80,
-              height: 80,
+              width: 100,
+              height: 100,
               marginLeft: 15,
               borderRadius: 400 / 2,
+              alignSelf: "center",
             }}
             source={{ uri: img }}
           />
         ) : (
           false
         )}
-        <View style={{ justifyContent: "center", marginLeft: 10 }}>
-          <View style={{ flexDirection: "row" }}>
-            <Text category={"h5"}>{title}</Text>
+        <View
+          style={{
+            justifyContent: "flex-start",
+            marginLeft: 10,
+            width: "auto",
+            flex: 1,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <H1>{title}</H1>
           </View>
           <Layout
             style={{
               borderRadius: 9,
-              alignItems: "center",
+              justifyContent: "flex-end",
+              marginTop: 15,
             }}
           >
-            <Text style={{ color: theme["color-basic-500"] }}>{subtitle}</Text>
+            <Text style={{ color: theme["color-basic-600"] }}>{subtitle}</Text>
+          </Layout>
+          <Layout
+            style={{
+              width: 90,
+              borderRadius: 9,
+              marginTop: 15,
+              backgroundColor: "#ff7f2f",
+              paddingHorizontal: 10,
+              marginRight: 15,
+              alignSelf: "flex-end",
+            }}
+          >
+            <Text style={{ color: "white", textAlign: "center" }}>
+              Leer Más
+            </Text>
           </Layout>
         </View>
       </View>

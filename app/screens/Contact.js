@@ -1,13 +1,12 @@
 import React from "react";
-import { Linking, ImageBackground, Dimensions } from "react-native";
+import { Linking, ImageBackground, Dimensions, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { login as loginapi, checkAuth } from "../../store/actions/app";
 import { Layout, Text, Card, Button } from "@ui-kitten/components";
-import InnerModalContact from "../../components/ModalCard";
 import Modal from "react-native-modal";
 import { styles } from "../../components/styles/ContactStyles";
-
+import { MyText } from "../../components/MyText";
 class Contact extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +36,42 @@ class Contact extends React.Component {
             }}
           >
             <Layout style={{ flex: 1 }}>
-              <InnerModalContact />
+              <ScrollView
+                style={{
+                  flexDirection: "column",
+                  backgroundColor: "transparent",
+                }}
+              >
+                <Card style={styles.cardModal}>
+                  <Layout>
+                    <MyText style={{ fontSize: 16 }}>
+                      Atención a Clientes
+                    </MyText>
+                  </Layout>
+                </Card>
+                <Card style={styles.cardModal}>
+                  <Layout>
+                    <MyText style={{ fontSize: 16 }}>Finanzas</MyText>
+                  </Layout>
+                </Card>
+                <Card style={styles.cardModal}>
+                  <Layout>
+                    <MyText style={{ fontSize: 16 }}>Ética</MyText>
+                  </Layout>
+                </Card>
+                <Card style={styles.cardModal}>
+                  <Layout>
+                    <MyText style={{ fontSize: 16 }}>Sistemas</MyText>
+                  </Layout>
+                </Card>
+                <Card style={styles.cardModal}>
+                  <Layout>
+                    <MyText style={{ fontSize: 16 }}>
+                      Dirección Comercial
+                    </MyText>
+                  </Layout>
+                </Card>
+              </ScrollView>
             </Layout>
             <Layout
               style={{ flex: 0, paddingBottom: 10, alignItems: "center" }}
@@ -65,12 +99,12 @@ class Contact extends React.Component {
                   style={styles.icon}
                 />
               </Layout>
-              <Text>¡Por Email!</Text>
+              <MyText>¡Por Email!</MyText>
             </Card>
 
             <Card
               style={styles.card}
-              onPress={() => Linking.openURL("https://wa.me/+52-(669)2052676")}
+              onPress={() => Linking.openURL("https://wa.me/5213339531391")}
             >
               <Layout style={{ alignItems: "center" }}>
                 <Icon
@@ -82,13 +116,13 @@ class Contact extends React.Component {
                 />
               </Layout>
 
-              <Text>¡Por Mensaje!</Text>
+              <MyText>¡Por Mensaje!</MyText>
             </Card>
           </Layout>
           <Layout style={styles.container} level="4">
             <Card
               style={styles.card}
-              onPress={() => Linking.openURL("tel:+526692052676")}
+              onPress={() => Linking.openURL("tel:+523336785100")}
             >
               <Layout style={{ alignItems: "center" }}>
                 <Icon
@@ -99,7 +133,7 @@ class Contact extends React.Component {
                   style={styles.icon}
                 />
               </Layout>
-              <Text>¡Llamanos!</Text>
+              <MyText>¡Llamanos!</MyText>
             </Card>
           </Layout>
         </Layout>

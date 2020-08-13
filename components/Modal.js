@@ -1,8 +1,16 @@
 import React from "react";
-import { TouchableOpacity, Image, View, Dimensions } from "react-native";
+import {
+  TouchableOpacity,
+  Image,
+  View,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import { Icon } from "react-native-elements";
-import { Layout, Text } from "@ui-kitten/components";
+import { Layout, Text, Card } from "@ui-kitten/components";
 import Modal from "react-native-modal";
+import { styles } from "./styles/ContactStyles";
+import MyText from "./MyText";
 
 export const ModalCat = ({
   ToggleModal,
@@ -23,7 +31,7 @@ export const ModalCat = ({
           maxHeight: Dimensions.get("window").height / 2,
         }}
       >
-        <Layout style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
           <TouchableOpacity onPress={() => CategorySelected("NUT")}>
             <View
               style={{
@@ -121,7 +129,7 @@ export const ModalCat = ({
               </View>
             </View>
           </TouchableOpacity>
-        </Layout>
+        </ScrollView>
         <Layout style={{ flex: 0, paddingBottom: 10, alignItems: "center" }}>
           <Icon
             reverse

@@ -21,12 +21,14 @@ export const InputNumber = ({ value, onUp, onDown }) => (
   </Layout>
 );
 
-export const ShowPasswordControl = ({ show, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <Icon
-      type="material-community"
-      name={show ? "eye-outline" : "eye-off-outline"}
-      size={26}
-    />
-  </TouchableOpacity>
-);
+export const ShowPasswordControl = ({ show, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Icon
+        type="material-community"
+        name={show ? "eye" : "eye-off"}
+        size={26}
+      />
+    </TouchableOpacity>
+  );
+};

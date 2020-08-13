@@ -6,9 +6,6 @@ import { Platform, StatusBar, StyleSheet, View } from "react-native";
 
 import Navigation from "./app/navigation/Navigation";
 import { Provider } from "react-redux";
-// import { Ionicons } from "@expo/vector-icons";
-
-// import LoadingView from "./app/screens/AuthLogin";
 import { persistor, store } from "./store";
 
 import { PersistGate } from "redux-persist/lib/integration/react";

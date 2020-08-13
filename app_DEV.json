@@ -3,7 +3,7 @@
     "name": "my-blnews",
     "slug": "my-blnews",
     "extra": {
-      "serverUrl": "https://mybl-news-be.herokuapp.com"
+      "serverUrl": "http://192.168.1.67:3000"
     },
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",

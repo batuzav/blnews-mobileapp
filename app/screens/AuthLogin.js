@@ -1,28 +1,26 @@
 import React from "react";
 import {
-  TouchableOpacity,
   ActivityIndicator,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
+  View,
+  StatusBar,
+  ImageBackground,
 } from "react-native";
 import { Image } from "react-native-elements";
 import { connect } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import { login as loginapi, checkAuth } from "../../store/actions/app";
-
-import { ShowPasswordControl } from "../../components/input";
 import * as eva from "@eva-design/eva";
+import { styles } from "../../components/styles/Login";
 import {
   ApplicationProvider,
-  Layout,
   Text,
   Button,
-  LayoutPager,
   Input,
-  Icon,
 } from "@ui-kitten/components";
+import { ShowPasswordControl } from "../../components/input";
 import { default as theme } from "../../assets/mapping/mapping.json";
 
 class Screen extends React.Component {
@@ -103,79 +101,81 @@ class Screen extends React.Component {
   };
   toggleShowPassword = () => {
     const showPassword = !this.state.showPassword;
-
     this.setState({ showPassword });
   };
-
-  renderIcon = (props) => {
-    //console.log("props", props);
-    <TouchableWithoutFeedback onPress={this.toggleShowPassword}>
-      <Icon name={this.state.showPassword ? "eye-off" : "eye"} />
-    </TouchableWithoutFeedback>;
-  };
-
   render() {
     const { errorMsg, loading } = this.props;
     const { inputDIB, inputPass, showPassword } = this.state;
     return (
       <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-        <Layout
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        <StatusBar barStyle="light-content" backgroundColor="#ff7f2f" />
+        <ImageBackground
+          style={styles.rect}
+          imageStyle={styles.rect_imageStyle}
+          source={require("../../images/bg-images/loginbg.png")}
         >
-          <Layout style={{ width: 200, alignItems: "center" }}>
-            <Image
-              source={require("../../assets/logoBL/logo.png")}
-              style={{ width: 120, height: 120 }}
-              PlaceholderContent={<ActivityIndicator />}
-            />
-            <KeyboardAvoidingView>
-              <Input
-                value={inputDIB}
-                label={"No. de DIB"}
-                status={"primary"}
-                placeholder={"No. de DIB"}
-                autoCapitalize="none"
-                autoCorrect={false}
-                keyboardType={"email-address"}
-                onChangeText={(e) => this.onInputValueChange(e, "inputDIB")}
-                style={{ width: 250 }}
-              />
-              <Input
-                style={{ width: 250 }}
-                value={inputPass}
-                label={"Contraseña"}
-                status={"primary"}
-                placeholder={"Contraseña"}
-                secureTextEntry={!showPassword}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={(e) => this.onInputValueChange(e, "inputPass")}
-                accessoryRight={this.renderIcon()}
-              />
-            </KeyboardAvoidingView>
-          </Layout>
-
-          <Layout
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              height: 80,
-            }}
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            {loading ? (
-              <ActivityIndicator
-                size="large"
-                color={eva.light["color-basic-900"]}
+            <View style={{ width: 200, alignItems: "center" }}>
+              <Image
+                source={require("../../assets/logoBL/logo.png")}
+                style={{ width: 120, height: 120 }}
+                PlaceholderContent={<ActivityIndicator />}
               />
-            ) : (
-              <Button onPress={this.login} disabled={loading}>
-                Entrar
-              </Button>
-            )}
-            <Text status={"danger"}>{errorMsg}</Text>
-          </Layout>
+              <KeyboardAvoidingView>
+                <Input
+                  value={inputDIB}
+                  label={"No. de DIB"}
+                  status={"primary"}
+                  placeholder={"No. de DIB"}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  keyboardType={"email-address"}
+                  onChangeText={(e) => this.onInputValueChange(e, "inputDIB")}
+                  style={{ width: 300 }}
+                />
+                <Input
+                  style={{ width: 300 }}
+                  value={inputPass}
+                  label={"Contraseña"}
+                  status={"primary"}
+                  placeholder={"Contraseña"}
+                  secureTextEntry={!showPassword}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  onChangeText={(e) => this.onInputValueChange(e, "inputPass")}
+                  accessoryRight={() => (
+                    <ShowPasswordControl
+                      show={showPassword}
+                      onPress={() => this.toggleShowPassword()}
+                    />
+                  )}
+                />
+              </KeyboardAvoidingView>
+            </View>
 
-          {/* <Layout style={{ alignItems: "center", marginTop: 20 }}>
+            <View
+              style={{
+                justifyContent: "flex-end",
+                alignItems: "center",
+                height: 180,
+              }}
+            >
+              {loading ? (
+                <ActivityIndicator
+                  size="large"
+                  color={eva.light["color-basic-900"]}
+                />
+              ) : (
+                <Button onPress={this.login} disabled={loading}>
+                  Entrar
+                </Button>
+              )}
+              <Text status={"danger"}>{errorMsg}</Text>
+            </View>
+
+            {/* <View style={{ alignItems: "center", marginTop: 20 }}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("AuthResetPass")}
             >
@@ -186,8 +186,9 @@ class Screen extends React.Component {
             >
               <Text>Crear cuenta</Text>
             </TouchableOpacity>
-          </Layout>*/}
-        </Layout>
+          </View>*/}
+          </View>
+        </ImageBackground>
       </ApplicationProvider>
     );
   }

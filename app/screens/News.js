@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ImageBackground, StyleSheet, FlatList } from "react-native";
+import { ImageBackground, StyleSheet, FlatList } from "react-native";
 import { Header } from "react-native-elements";
 import { connect } from "react-redux";
 import {
@@ -57,7 +57,7 @@ class News extends React.Component {
       >
         <Header
           backgroundColor="white"
-          containerStyle={{ height: 55 }}
+          containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
           centerComponent={{
             text: "Noticias",
             style: {
