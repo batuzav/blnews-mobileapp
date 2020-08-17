@@ -1,6 +1,11 @@
 import React from "react";
-import { ImageBackground, StyleSheet, FlatList } from "react-native";
-import { Header } from "react-native-elements";
+import {
+  ImageBackground,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
+import { Header, Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import {
   getCampaigns,
@@ -48,6 +53,34 @@ class News extends React.Component {
   renderItem({ index, item }) {
     return <Item {...item} action={() => this.goToDetail(index)} />;
   }
+  HandleRendericon = () => {
+    let iconName;
+    switch (this.state.category) {
+      case "TOD":
+        iconName = "expand-all";
+        break;
+      case "PRO":
+        iconName = "sale";
+        break;
+      case "NOT":
+        iconName = "newspaper";
+        break;
+      case "NUT":
+        iconName = "food-apple";
+        break;
+
+      default:
+        break;
+    }
+    return (
+      <Icon
+        type="material-community"
+        name={iconName}
+        size={22}
+        color="#ff7f2f"
+      />
+    );
+  };
   render() {
     return (
       <ImageBackground
@@ -55,44 +88,48 @@ class News extends React.Component {
         resizeMode="cover"
         source={require("../../images/bg-images/newsbg.png")}
       >
-        <Header
-          backgroundColor="white"
-          containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
-          centerComponent={{
-            text: "Noticias",
-            style: {
+        <SafeAreaView>
+          <Header
+            backgroundColor="white"
+            containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
+            centerComponent={{
+              text: "MyBL-News",
+              style: {
+                color: "#000",
+                fontSize: 20,
+                marginTop: -38,
+                fontWeight: "bold",
+              },
+            }}
+            leftContainerStyle={{ marginTop: -45 }}
+            leftComponent={{
+              icon: "menu",
               color: "#000",
-              fontSize: 20,
-              marginTop: -38,
-              fontWeight: "bold",
-            },
-          }}
-          leftContainerStyle={{ marginTop: -45 }}
-          leftComponent={{
-            icon: "menu",
-            color: "#000",
-            onPress: () => this.toggleShowModal(),
-          }}
-        />
+              onPress: () => this.toggleShowModal(),
+            }}
+            rightComponent={<this.HandleRendericon />}
+            rightContainerStyle={{ marginTop: -45 }}
+          />
 
-        <ModalCat
-          ToggleModal={() => this.toggleShowModal()}
-          CategorySelected={this.categorySelected}
-          Visible={this.state.showModal}
-          Selected={this.state.category}
-        />
+          <ModalCat
+            ToggleModal={() => this.toggleShowModal()}
+            CategorySelected={this.categorySelected}
+            Visible={this.state.showModal}
+            Selected={this.state.category}
+          />
 
-        <Layout style={{ backgroundColor: "transparent", height: "93%" }}>
-          <FlatList
-            style={{ paddingHorizontal: 20 }}
-            onRefresh={() => this.getAllCampaigns()}
-            refreshing={false}
-            data={this.props.list}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={(item) => this.renderItem(item, this.renderItem)}
-            // ListHeaderComponent={this.renderHeader}
-          ></FlatList>
-        </Layout>
+          <Layout style={{ backgroundColor: "transparent", height: "93%" }}>
+            <FlatList
+              style={{ paddingHorizontal: 20 }}
+              onRefresh={() => this.getAllCampaigns()}
+              refreshing={false}
+              data={this.props.list}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={(item) => this.renderItem(item, this.renderItem)}
+              // ListHeaderComponent={this.renderHeader}
+            ></FlatList>
+          </Layout>
+        </SafeAreaView>
       </ImageBackground>
     );
   }

@@ -1,13 +1,20 @@
 {
   "expo": {
-    "name": "my-blnews",
+    "name": "MyBL-News",
     "slug": "my-blnews",
     "extra": {
       "serverUrl": "https://mybl-news-be.herokuapp.com"
     },
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
+    "notification": {
+      "icon": "./assets/icon.png"
+    },
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./images/launchimages/splash.png",
@@ -17,9 +24,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

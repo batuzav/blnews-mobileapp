@@ -126,19 +126,21 @@ class Screen extends React.Component {
               <KeyboardAvoidingView>
                 <Input
                   value={inputDIB}
-                  label={"No. de DIB"}
                   status={"primary"}
                   placeholder={"No. de DIB"}
                   autoCapitalize="none"
                   autoCorrect={false}
                   keyboardType={"email-address"}
                   onChangeText={(e) => this.onInputValueChange(e, "inputDIB")}
-                  style={{ width: 300 }}
+                  style={{
+                    width: 300,
+                    marginBottom: 20,
+                    marginTop: 20,
+                  }}
                 />
                 <Input
                   style={{ width: 300 }}
                   value={inputPass}
-                  label={"Contraseña"}
                   status={"primary"}
                   placeholder={"Contraseña"}
                   secureTextEntry={!showPassword}
@@ -172,7 +174,7 @@ class Screen extends React.Component {
                   Entrar
                 </Button>
               )}
-              <Text status={"danger"}>{errorMsg}</Text>
+              <Text style={{ color: "blue" }}>{errorMsg}</Text>
             </View>
 
             {/* <View style={{ alignItems: "center", marginTop: 20 }}>

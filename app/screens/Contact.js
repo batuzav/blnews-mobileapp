@@ -1,5 +1,12 @@
 import React from "react";
-import { Linking, ImageBackground, Dimensions, ScrollView } from "react-native";
+import {
+  Linking,
+  ImageBackground,
+  Dimensions,
+  ScrollView,
+  StatusBar,
+  SafeAreaView,
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { login as loginapi, checkAuth } from "../../store/actions/app";
@@ -25,6 +32,7 @@ class Contact extends React.Component {
         resizeMode="cover"
         source={require("../../images/bg-images/contactobg.png")}
       >
+        <StatusBar backgroundColor="black" />
         <Layout>
           <Modal
             isVisible={this.state.showModal}

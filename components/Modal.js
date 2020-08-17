@@ -133,7 +133,7 @@ export const ModalCat = ({
         <Layout style={{ flex: 0, paddingBottom: 10, alignItems: "center" }}>
           <Icon
             reverse
-            name="close"
+            name="magnify"
             type="material-community"
             color="#ff7f2f"
             onPress={ToggleModal}

@@ -7,12 +7,14 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
+  Platform,
 } from "react-native";
 import { Layout, Text, Card } from "@ui-kitten/components";
 import { Icon } from "react-native-elements";
 import { H1 } from "../components/MyText";
 
 export const Item = ({ img, action, title, subtitle }) => {
+  const textFotnt = Platform.OS === "ios" ? 14 : 14;
   return (
     <TouchableOpacity onPress={action}>
       <View
@@ -63,7 +65,11 @@ export const Item = ({ img, action, title, subtitle }) => {
               marginTop: 15,
             }}
           >
-            <Text style={{ color: theme["color-basic-600"] }}>{subtitle}</Text>
+            <Text
+              style={{ color: theme["color-basic-600"], fontSize: textFotnt }}
+            >
+              {subtitle}
+            </Text>
           </Layout>
           <Layout
             style={{
@@ -76,7 +82,13 @@ export const Item = ({ img, action, title, subtitle }) => {
               alignSelf: "flex-end",
             }}
           >
-            <Text style={{ color: "white", textAlign: "center" }}>
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: textFotnt,
+              }}
+            >
               Leer Más
             </Text>
           </Layout>

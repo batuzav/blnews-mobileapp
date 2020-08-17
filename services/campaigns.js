@@ -4,7 +4,6 @@ export const getCampaignsQuery = () => `query{
       title,
       subtitle,
       img,
-      category
     }
   }`;
 
@@ -14,7 +13,6 @@ export const getCampaignByCategoryQuery = (category) => `query{
     title,
     subtitle,
     img,
-    category,
   }
 }`;
 
@@ -25,5 +23,6 @@ export const getCampaignByIdQuery = (id) => `query{
     description,
     img,
     category,
+    imageBody,
   }
 }`;

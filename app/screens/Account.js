@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, View, StatusBar, Text, Switch, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  Text,
+  Switch,
+  Image,
+  Platform,
+} from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import { connect } from "react-redux";
 import { Icon } from "react-native-elements";
@@ -15,18 +23,22 @@ class Account extends React.Component {
   render() {
     return (
       <View style={styles.root}>
-        <StatusBar barStyle="light-content" backgroundColor="#ff7f2f" />
+        {Platform.OS === "ios" ? (
+          <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+        ) : (
+          <StatusBar barStyle="dark-content" backgroundColor="#ff7f2f" />
+        )}
         <View style={styles.bodyFiller}></View>
         <View style={styles.body}>
           <View style={styles.ellipseStack}>
-            <Svg viewBox="0 0 859.43 890.3" style={styles.ellipse}>
+            <Svg viewBox=" 0 0 859.43 830.3" style={styles.ellipse}>
               <Ellipse
                 strokeWidth={1}
                 fill="rgba(255,255,255,1)"
-                cx={430}
-                cy={445}
-                rx={429}
-                ry={445}
+                cx={-14}
+                cy={180}
+                rx={409}
+                ry={515}
               ></Ellipse>
             </Svg>
             <View style={styles.settingsList}>
@@ -36,14 +48,14 @@ class Account extends React.Component {
                   <View style={styles.editProfileColumn}>
                     <View style={styles.editProfile}>
                       <Text style={styles.text10}>Edit Profile</Text>
-                      <View style={styles.text10Filler}></View>
+                      {/* <View style={styles.text10Filler}></View>
                       <Icon
                         name="arrow-down"
                         type="material-community"
                         style={styles.icon}
-                      />
+                      /> */}
                     </View>
-                    <View style={styles.changeConnections}>
+                    {/* <View style={styles.changeConnections}>
                       <Text style={styles.text11}>Change connections</Text>
                       <View style={styles.text11Filler}></View>
                       <Icon
@@ -51,10 +63,10 @@ class Account extends React.Component {
                         type="material-community"
                         style={styles.icon}
                       />
-                    </View>
+                    </View> */}
                   </View>
                   <View style={styles.editProfileColumnFiller}></View>
-                  <View style={styles.providerSettings}>
+                  {/* <View style={styles.providerSettings}>
                     <Text style={styles.text12}>Edit provider settings</Text>
                     <View style={styles.text12Filler}></View>
                     <Icon
@@ -62,12 +74,12 @@ class Account extends React.Component {
                       type="material-community"
                       style={styles.icon}
                     />
-                  </View>
+                  </View> */}
                 </View>
               </View>
               <View style={styles.sub2}>
                 <View style={styles.notificationsColumn}>
-                  <View style={styles.notifications}>
+                  {/* <View style={styles.notifications}>
                     <Text style={styles.text7}>Notifications</Text>
                     <View style={styles.text7Filler}></View>
                     <Switch
@@ -88,10 +100,10 @@ class Account extends React.Component {
                       }}
                       style={styles.switch2}
                     ></Switch>
-                  </View>
+                  </View> */}
                 </View>
                 <View style={styles.notificationsColumnFiller}></View>
-                <View style={styles.sponsored}>
+                {/* <View style={styles.sponsored}>
                   <Text style={styles.text73}>Sponsored Messages</Text>
                   <View style={styles.text73Filler}></View>
                   <Switch
@@ -102,7 +114,7 @@ class Account extends React.Component {
                     }}
                     style={styles.switch4}
                   ></Switch>
-                </View>
+                </View> */}
               </View>
             </View>
             <Text style={styles.pageName}>{this.props.user.dibNumber}</Text>
@@ -112,7 +124,20 @@ class Account extends React.Component {
                   source={require("../../images/unnamed.jpg")}
                   resizeMode="stretch"
                   style={styles.avatar}
-                ></Image>
+                />
+                {/* {this.props.user.img !== "none" ? (
+                  <Image
+                    source={require({ uri: this.props.user.img })}
+                    resizeMode="stretch"
+                    style={styles.avatar}
+                  />
+                ) : (
+                  <Image
+                    source={require("../../images/isotipo-bodylogic.png")}
+                    resizeMode="stretch"
+                    style={styles.avatar}
+                  />
+                )} */}
                 <View style={styles.userEmailStack}>
                   {/* <Text style={styles.userEmail}>stan@stansmith.com</Text> */}
                   <Text style={styles.userName}>
@@ -142,8 +167,8 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: "#ff7f2f",
     width: 360,
-    marginRight: -4,
-    marginTop: 59,
+    marginRight: Platform.OS === "ios" ? -4 : 2,
+    marginTop: 45,
     marginBottom: 21,
   },
   headerX: {
@@ -161,7 +186,7 @@ const styles = StyleSheet.create({
     marginLeft: -3,
   },
   ellipse: {
-    top: 9,
+    top: -62,
     left: 0,
     width: 859,
     height: 890,
@@ -313,7 +338,7 @@ const styles = StyleSheet.create({
   pageName: {
     top: 0,
     left: 85,
-    color: "rgba(255,255,255,1)",
+    color: "#ff7f2f",
     position: "absolute",
     fontSize: 24,
   },
@@ -326,9 +351,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   avatar: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     borderRadius: 100,
+    backgroundColor: Platform.OS === "ios" ? "white" : "transparent",
+    borderWidth: Platform.OS === "ios" ? 2 : 0,
+    borderColor: "#ff7f2f",
   },
   userEmail: {
     top: 75,
@@ -355,6 +383,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     marginRight: 12,
+    borderRadius: 100,
   },
   ellipseStack: {
     height: 899,

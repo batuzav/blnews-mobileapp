@@ -7,6 +7,7 @@ const initialState = {
   email: "",
   phone: "",
   tokkenApp: "",
+  img: "",
 };
 
 const User = (state = initialState, action) => {

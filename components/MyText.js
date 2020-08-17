@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, Platform } from "react-native";
 
 export const MyText = (props) => {
   return (
@@ -16,7 +16,7 @@ export const H1 = (props) => {
       style={[
         {
           fontFamily: "body-logic",
-          fontSize: 24,
+          fontSize: Platform.OS === "ios" ? 19 : 24,
         },
         props.style,
       ]}

@@ -3,7 +3,7 @@ export const loginQuery = (data) => `query {
     user {
       _id,
       dibNumber, email, timezone,
-      firstName, lastName, tokkenApp
+      firstName, lastName, tokkenApp, img
     },
     token,
   }
@@ -14,11 +14,3 @@ export const checkAuthQuery = () => `query{
     isAuth
   }
   }`;
-
-export const updateTokkenAppQuery = (data) => `query{
-  updateUserTokkenApp(id:"${data.id}", tokkenApp:"${data.tokkenApp}"){
-    _id,
-      dibNumber, email, timezone,
-      firstName, lastName, tokkenApp
-  }
-}`;

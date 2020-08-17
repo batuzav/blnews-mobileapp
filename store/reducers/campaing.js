@@ -3,6 +3,7 @@ const initialState = {
   title: "",
   description: "",
   img: "",
+  imageBody: "",
   category: [],
 };
 
