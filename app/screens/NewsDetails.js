@@ -1,7 +1,7 @@
 import React from "react";
 import {
   TouchableOpacity,
-  View,
+  SafeAreaView,
   ImageBackground,
   StatusBar,
   Image,
@@ -12,6 +12,7 @@ import { getCampaignById } from "../../store/actions/campaign";
 import * as eva from "@eva-design/eva";
 import { Text } from "@ui-kitten/components";
 import { Detail } from "../../components/Campaigns";
+import { StaticHeader } from "../../components/Header";
 
 class NewsDetails extends React.Component {
   constructor(props) {
@@ -26,6 +27,9 @@ class NewsDetails extends React.Component {
   getCampaignData = (id) => {
     this.props.getCampaignById(id);
   };
+  goToBack = () => {
+    this.props.navigation.navegate("news");
+  };
   render() {
     console.log("imagebody: ", this.props.campaign.imageBody);
     if (this.props.campaign.imageBody === "") {
@@ -38,25 +42,22 @@ class NewsDetails extends React.Component {
           resizeMode="cover"
           source={require("../../images/bg-images/newsbg.png")}
         >
-          <StatusBar barStyle="light-content" backgroundColor="#ff7f2f" />
-          <Detail data={this.props.campaign} />
+          <SafeAreaView>
+            <StaticHeader title="MyBL-News" leftCompnent={this.goToBack} />
+            <StatusBar barStyle="light-content" backgroundColor="#ff7f2f" />
+            <Detail data={this.props.campaign} />
+          </SafeAreaView>
         </ImageBackground>
       );
     } else {
       return (
-        <ImageBackground
-          style={{
-            width: "100%",
-            flex: 1,
-          }}
-          resizeMode="cover"
-          source={{ uri: this.props.campaign.imageBody }}
-        >
+        <SafeAreaView style={{ flex: 1 }}>
+          <StaticHeader title="MyBL News" leftCompnent={this.goToBack()} />
           <Image
             source={{ uri: this.props.campaign.imageBody }}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "95%", margin: 1 }}
           ></Image>
-        </ImageBackground>
+        </SafeAreaView>
       );
     }
   }

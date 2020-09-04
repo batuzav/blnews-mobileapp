@@ -11,7 +11,7 @@ export default function ContactStack() {
       <Stack.Screen
         name="contact"
         component={Contact}
-        options={{ title: "Contáctanos" }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

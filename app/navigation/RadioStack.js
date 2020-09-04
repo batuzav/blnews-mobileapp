@@ -11,7 +11,7 @@ export default function RadioStack() {
       <Stack.Screen
         name="radio"
         component={Radio}
-        options={{ title: "MyBL News Radio" }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

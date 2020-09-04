@@ -15,6 +15,7 @@ import { H1 } from "../components/MyText";
 
 export const Item = ({ img, action, title, subtitle }) => {
   const textFotnt = Platform.OS === "ios" ? 14 : 14;
+  console.log("Title: ", title);
   return (
     <TouchableOpacity onPress={action}>
       <View

@@ -121,7 +121,7 @@ class Account extends React.Component {
             <View style={styles.userInfo}>
               <View style={styles.avatarRow}>
                 <Image
-                  source={require("../../images/unnamed.jpg")}
+                  source={require("../../images/isotipo-bodylogic.png")}
                   resizeMode="stretch"
                   style={styles.avatar}
                 />

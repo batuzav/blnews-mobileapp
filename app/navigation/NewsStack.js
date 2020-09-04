@@ -18,7 +18,7 @@ export default function NewsStack() {
       <Stack.Screen
         name="newsDetails"
         component={NewsDetails}
-        options={{ title: "Detalles" }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
