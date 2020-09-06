@@ -1,7 +1,8 @@
 import React from "react";
-import { Header } from "react-native-elements";
+import { Header, Icon } from "react-native-elements";
 
-export const StaticHeader = ({ title, leftCompnent = false }) => {
+export const StaticHeader = ({ title = "REY", leftCompnent = false }) => {
+  console.log("leftComponent", leftCompnent);
   return (
     <Header
       backgroundColor="white"
@@ -17,13 +18,16 @@ export const StaticHeader = ({ title, leftCompnent = false }) => {
       }}
       leftContainerStyle={!leftCompnent ? false : { marginTop: -45 }}
       leftComponent={
-        !leftCompnent
-          ? false
-          : {
-              icon: "arrow-left",
-              color: "#000",
-              onPress: () => leftCompnent,
-            }
+        !leftCompnent ? (
+          false
+        ) : (
+          <Icon
+            name="arrow-left"
+            type="material-community"
+            color="#000"
+            onPress={leftCompnent}
+          />
+        )
       }
     />
   );

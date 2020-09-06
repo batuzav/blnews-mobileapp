@@ -12,7 +12,11 @@ export default function Radio() {
     >
       <SafeAreaView style={{ flex: 1 }}>
         <StaticHeader title="MyBL Radio" />
-        <StatusBar barStyle="light-content" backgroundColor="#ff7f2f" />
+        {Platform.OS === "ios" ? (
+          <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+        ) : (
+          <StatusBar barStyle="dark-content" backgroundColor="#ff7f2f" />
+        )}
         <WebView
           style={{
             marginTop: 20,

@@ -28,7 +28,7 @@ class NewsDetails extends React.Component {
     this.props.getCampaignById(id);
   };
   goToBack = () => {
-    this.props.navigation.navegate("news");
+    this.props.navigation.navigate("news");
   };
   render() {
     console.log("imagebody: ", this.props.campaign.imageBody);
@@ -52,7 +52,7 @@ class NewsDetails extends React.Component {
     } else {
       return (
         <SafeAreaView style={{ flex: 1 }}>
-          <StaticHeader title="MyBL News" leftCompnent={this.goToBack()} />
+          <StaticHeader title="MyBL News" leftCompnent={this.goToBack} />
           <Image
             source={{ uri: this.props.campaign.imageBody }}
             style={{ width: "100%", height: "95%", margin: 1 }}

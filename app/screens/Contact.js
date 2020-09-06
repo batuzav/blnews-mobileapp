@@ -35,7 +35,11 @@ class Contact extends React.Component {
       >
         <SafeAreaView style={{ flex: 1 }}>
           <StaticHeader title="Contáctanos" />
-          <StatusBar backgroundColor="black" />
+          {Platform.OS === "ios" ? (
+            <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+          ) : (
+            <StatusBar barStyle="dark-content" backgroundColor="#ff7f2f" />
+          )}
           <Layout>
             <Modal
               isVisible={this.state.showModal}
