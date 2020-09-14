@@ -8,6 +8,7 @@ const initialState = {
   phone: "",
   tokkenApp: "",
   img: "",
+  countriesToSee: [],
 };
 
 const User = (state = initialState, action) => {

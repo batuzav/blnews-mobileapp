@@ -3,7 +3,7 @@ export const loginQuery = (data) => `query {
     user {
       _id,
       dibNumber, email, timezone,
-      firstName, lastName, tokkenApp, img
+      firstName, lastName, tokkenApp, img, countriesToSee
     },
     token,
   }
@@ -12,5 +12,24 @@ export const loginQuery = (data) => `query {
 export const checkAuthQuery = () => `query{
   checkLogin{
     isAuth
-  }
+  } 
   }`;
+
+export const registerByAppMutation = (data) => `mutation{
+  registerByApp(registerByAppInput: {dibNumber:"${data.dibNumber}", email:"${data.email}", password:"${data.password}", confirmPassword:"${data.confirmPassword}", } ){
+    isRegister
+  }
+}`;
+
+export const changeCountriesToSeeMutation = (data) => `mutation{
+  changeCountriesToSee(dibNumber:"${data.dibNumber}", countriesToSee:${data.selectedCountries}){
+  isChange
+  newUser{
+     _id,
+      dibNumber, email, timezone,
+      firstName, lastName, tokkenApp, img, countriesToSee
+    
+  }
+  
+  }
+}`;

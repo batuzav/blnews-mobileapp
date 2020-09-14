@@ -43,7 +43,6 @@ class News extends React.Component {
       this.setState({ findByCategory: false, category });
     } else {
       this.setState({ findByCategory: true, category });
-      console.log("categoria: ", category);
     }
     // this.toggleShowModal();
   };

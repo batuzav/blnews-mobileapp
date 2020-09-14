@@ -25,6 +25,7 @@ class AuthLoadingScreen extends React.Component {
   }
   static getDerivedStateFromProps(props, state) {
     // console.log("Entro al getDerivedStatedFromsProps", props);
+
     if (props.isLogged) {
       console.log("ENTRO AL LOGEED DEL LOADING EN GET");
       socketInit({
@@ -33,7 +34,7 @@ class AuthLoadingScreen extends React.Component {
       });
       props.navigation.navigate("Navigation", { screen: "news" });
     } else {
-      props.navigation.navigate("Login");
+      props.navigation.navigate("Auth", { screen: "Login" });
     }
     return null;
   }
@@ -44,17 +45,15 @@ class AuthLoadingScreen extends React.Component {
     // this.props.loginReset();
     // console.log("boootsarp");
     // console.log("props en boootstartp: ", this.props);
-    // this.props.checkAuth();
 
     if (this.props.isLogged) {
       console.log("ENTRO AL LOGEED DEL LOADING");
-      socketInit({
-        jwtAccessToken: this.props.app.token,
-        dispatch: this.props.dispatch,
-      });
-      this.props.navigation.navigate("Navigation", { screen: "news" });
+      this.props.checkAuth();
+      this.props.isLogged
+        ? this.props.navigation.navigate("Navigation", { screen: "news" })
+        : this.props.navigation.navigate("Auth", { screen: "Login" });
     } else {
-      this.props.navigation.navigate("Login");
+      this.props.navigation.navigate("Auth", { screen: "Login" });
     }
   };
 

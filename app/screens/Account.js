@@ -3,23 +3,34 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text,
   Switch,
   Image,
   Platform,
+  TouchableHighlight,
 } from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import { connect } from "react-redux";
 import { Icon } from "react-native-elements";
+import SectionedMultiSelect from "react-native-sectioned-multi-select";
+import { logout } from "../../store/actions/app";
+import { MyText } from "../../components/MyText";
 
 class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isModalVisible: false,
+      selectedCountries: this.props.user.countriesToSee,
+      isSelectVisible: true,
     };
   }
-
+  onSelectedItemsChange = (selectedCountries) => {
+    this.setState({ selectedCountries });
+  };
+  onHandleArrowSelect = () => {
+    const isSelectVisible = !this.state.isSelectVisible;
+    this.setState({ isSelectVisible });
+  };
   render() {
     return (
       <View style={styles.root}>
@@ -36,24 +47,57 @@ class Account extends React.Component {
                 strokeWidth={1}
                 fill="rgba(255,255,255,1)"
                 cx={-14}
-                cy={180}
+                cy={220}
                 rx={409}
                 ry={515}
               ></Ellipse>
             </Svg>
             <View style={styles.settingsList}>
               <View style={styles.accountSettings}>
-                <Text style={styles.expanded}>Account Settings</Text>
+                <MyText style={styles.expanded}>
+                  Preferencias del usuario
+                </MyText>
                 <View style={styles.subSettings}>
                   <View style={styles.editProfileColumn}>
                     <View style={styles.editProfile}>
-                      <Text style={styles.text10}>Edit Profile</Text>
-                      {/* <View style={styles.text10Filler}></View>
-                      <Icon
-                        name="arrow-down"
-                        type="material-community"
-                        style={styles.icon}
-                      /> */}
+                      <MyText style={styles.text10}>
+                        Mostrar informaicón por países
+                      </MyText>
+                      <View style={{ flex: 1 }}></View>
+                      {this.state.isSelectVisible ? (
+                        <Icon
+                          name="arrow-down"
+                          type="material-community"
+                          style={styles.icon}
+                          onPress={this.onHandleArrowSelect}
+                        />
+                      ) : (
+                        <Icon
+                          name="arrow-up"
+                          type="material-community"
+                          style={styles.icon}
+                          onPress={this.onHandleArrowSelect}
+                        />
+                      )}
+                    </View>
+                    <View style={styles.text10Filler}>
+                      <SectionedMultiSelect
+                        items={items}
+                        uniqueKey="id"
+                        style={{ container: "50%" }}
+                        colors={{
+                          subText: "#ff0000",
+                          selectToggleTextColor: "#000",
+                          primary: "#ff7f2f",
+                        }}
+                        subKey="children"
+                        selectText="Seleccione los países..."
+                        hideSelect={this.state.isSelectVisible}
+                        confirmText={"Confirmar"}
+                        selectedText={"Seleccionado"}
+                        onSelectedItemsChange={this.onSelectedItemsChange}
+                        selectedItems={this.state.selectedCountries}
+                      />
                     </View>
                     {/* <View style={styles.changeConnections}>
                       <Text style={styles.text11}>Change connections</Text>
@@ -103,21 +147,23 @@ class Account extends React.Component {
                   </View> */}
                 </View>
                 <View style={styles.notificationsColumnFiller}></View>
-                {/* <View style={styles.sponsored}>
-                  <Text style={styles.text73}>Sponsored Messages</Text>
+                <View style={styles.sponsored}>
+                  <TouchableHighlight onPress={() => this.props.logout()}>
+                    <MyText style={styles.text73}>Cerrar Sesión</MyText>
+                  </TouchableHighlight>
                   <View style={styles.text73Filler}></View>
-                  <Switch
+                  {/* <Switch
                     value={false}
                     trackColor={{
                       true: "rgba(230, 230, 230,1)",
                       false: "rgba(230, 230, 230,1)",
                     }}
                     style={styles.switch4}
-                  ></Switch>
-                </View> */}
+                  ></Switch> */}
+                </View>
               </View>
             </View>
-            <Text style={styles.pageName}>{this.props.user.dibNumber}</Text>
+            <MyText style={styles.pageName}>{this.props.user.dibNumber}</MyText>
             <View style={styles.userInfo}>
               <View style={styles.avatarRow}>
                 <Image
@@ -139,11 +185,13 @@ class Account extends React.Component {
                   />
                 )} */}
                 <View style={styles.userEmailStack}>
-                  {/* <Text style={styles.userEmail}>stan@stansmith.com</Text> */}
-                  <Text style={styles.userName}>
+                  <MyText style={styles.userEmail}>
+                    {this.props.user.email}
+                  </MyText>
+                  <MyText style={styles.userName}>
                     {this.props.user.firstName} {"\n"}
                     {this.props.user.lastName}
-                  </Text>
+                  </MyText>
                 </View>
               </View>
             </View>
@@ -153,6 +201,33 @@ class Account extends React.Component {
     );
   }
 }
+
+const items = [
+  {
+    id: "MEX",
+    name: "México",
+  },
+  {
+    id: "PER",
+    name: "Perú",
+  },
+  {
+    id: "BOL",
+    name: "Bolivia",
+  },
+  {
+    id: "SAL",
+    name: "El Salvador",
+  },
+  {
+    id: "PAN",
+    name: "Pánama",
+  },
+  {
+    id: "USA",
+    name: "United States",
+  },
+];
 
 const styles = StyleSheet.create({
   root: {
@@ -225,7 +300,10 @@ const styles = StyleSheet.create({
   },
   text10Filler: {
     flex: 1,
-    flexDirection: "row",
+    marginTop: 5,
+    width: 240,
+    marginLeft: -25,
+    flexDirection: "column",
   },
   icon: {
     color: "rgba(31,178,204,1)",
@@ -327,6 +405,7 @@ const styles = StyleSheet.create({
   text73: {
     color: "#121212",
     fontSize: 18,
+    textDecorationLine: "underline",
   },
   text73Filler: {
     flex: 1,
@@ -344,7 +423,7 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     top: 64,
-    left: 87,
+    left: 57,
     height: 125,
     position: "absolute",
     right: 451,
@@ -359,7 +438,7 @@ const styles = StyleSheet.create({
     borderColor: "#ff7f2f",
   },
   userEmail: {
-    top: 75,
+    top: 80,
     left: 0,
     color: "rgba(0,0,0,1)",
     position: "absolute",
@@ -373,9 +452,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   userEmailStack: {
-    width: 147,
+    width: 165,
     height: 96,
-    marginLeft: 62,
+    marginLeft: 50,
     marginTop: 13,
   },
   avatarRow: {
@@ -401,11 +480,11 @@ const mapStateToProps = (state) => {
     loading,
     serverError,
     loginError,
-
     user: state.user,
-    campaign: state.campaigns,
   };
 };
-const bindActions = (dispatch) => ({});
+const bindActions = (dispatch) => ({
+  logout: () => dispatch(logout()),
+});
 
 export default connect(mapStateToProps, bindActions)(Account);

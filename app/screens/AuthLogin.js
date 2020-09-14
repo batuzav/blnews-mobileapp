@@ -6,8 +6,9 @@ import {
   View,
   StatusBar,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
-import { Image } from "react-native-elements";
+import { Image, CheckBox } from "react-native-elements";
 import { connect } from "react-redux";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
@@ -22,6 +23,8 @@ import {
 } from "@ui-kitten/components";
 import { ShowPasswordControl } from "../../components/input";
 import { default as theme } from "../../assets/mapping/mapping.json";
+import { color } from "react-native-reanimated";
+import { MyText } from "../../components/MyText";
 
 class Screen extends React.Component {
   constructor(props) {
@@ -33,6 +36,7 @@ class Screen extends React.Component {
       loginDisabled: false,
       showPassword: false,
       tokkenApp: "",
+      tcAccept: false,
       // navigation: useNavigation(),
     };
   }
@@ -62,24 +66,25 @@ class Screen extends React.Component {
 
     try {
       let tokkenApp = await Notifications.getExpoPushTokenAsync();
-      console.log("tokkenapp", tokkenApp);
       this.setState({ tokkenApp });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
   async componentDidMount() {}
   login = async () => {
-    await this.registerForPushNotificationsAsync();
     this.setState({ loginDisabled: true });
+    await this.registerForPushNotificationsAsync();
     const obj = {
       dibNumber: this.state.inputDIB,
       password: this.state.inputPass,
       tokkenApp: this.state.tokkenApp,
     };
-    console.log("stateTokken", this.state.tokkenApp);
-    console.log("OBJ", obj);
-    if (obj.dibNumber !== "" && obj.password !== "" && obj.tokkenApp !== "") {
+    if (
+      obj.dibNumber !== "" &&
+      obj.password !== "" &&
+      obj.tokkenApp !== "" &&
+      this.state.tcAccept === true
+    ) {
+      console.log("GOLA");
       this.props.loginapi(obj);
     }
   };
@@ -102,6 +107,14 @@ class Screen extends React.Component {
   toggleShowPassword = () => {
     const showPassword = !this.state.showPassword;
     this.setState({ showPassword });
+  };
+  handleCheckChange = () => {
+    const tcAccept = !this.state.tcAccept;
+    this.setState({ tcAccept });
+  };
+  goToRegister = () => {
+    console.log("object");
+    this.props.navigation.navigate("Auth", { screen: "Register" });
   };
   render() {
     const { errorMsg, loading } = this.props;
@@ -155,6 +168,30 @@ class Screen extends React.Component {
                   )}
                 />
               </KeyboardAvoidingView>
+              <CheckBox
+                center
+                title="Acepto terminos y condiciones."
+                checked={this.state.tcAccept}
+                onPress={this.handleCheckChange}
+                containerStyle={{
+                  backgroundColor: "transparent",
+                  borderColor: "transparent",
+                }}
+                textStyle={{ color: "#000" }}
+                checkedColor="#ff7f2f"
+              />
+              <TouchableOpacity onPress={this.goToRegister}>
+                <MyText
+                  style={{
+                    fontSize: 18,
+                    textDecorationLine: "underline",
+                    textDecorationStyle: "solid",
+                    textDecorationColor: "#000",
+                  }}
+                >
+                  Registrarse
+                </MyText>
+              </TouchableOpacity>
             </View>
 
             <View

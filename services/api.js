@@ -6,18 +6,12 @@ export const apiCall = (query, token = "") => {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
     Authorization: token,
   };
   const url = `${serverUrl}/graphql`;
   // console.log("url: ", url);
-  const options = {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ query }),
-  };
   const data = JSON.stringify({ query });
-  // if (token)
-  // headers['Authorization'] = token;
   return new Promise(async (resolve, reject) => {
     await axios
       .post(url, data, { headers })

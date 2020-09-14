@@ -3,18 +3,18 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
-// import { Ionicons } from "@expo/vector-icons";
+import AuthStack from "./AuthStack";
 
 import NewsStack from "./NewsStack";
 import AccountStack from "./AccountStack";
 import RadioStack from "./RadioStack";
 import ContactStack from "./ContactStack";
+
 import LoadingView from "../screens/AuthLogin";
 import AuthLoading from "../screens/AuthLoading";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
 function InnerNavigation() {
   return (
     <Tab.Navigator
@@ -86,8 +86,8 @@ export default function Navigation() {
           options={{ headerShown: false, gesturesEnabled: false }}
         />
         <Stack.Screen
-          name="Login"
-          component={LoadingView}
+          name="Auth"
+          component={AuthStack}
           options={{ headerShown: false, gesturesEnabled: false }}
         />
         <Stack.Screen

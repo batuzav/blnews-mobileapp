@@ -30,7 +30,10 @@
     "react-native-gesture-handler": "~1.6.0",
     "react-native-modal": "^11.5.6",
     "react-native-reanimated": "~1.7.0",
+    "react-native-safe-area": "^0.5.1",
+    "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
+    "react-native-sectioned-multi-select": "^0.7.7",
     "react-native-svg": "11.0.1",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@expo/webpack-config": "^0.12.29",
     "babel-preset-expo": "~8.1.0"
   },
   "private": true
