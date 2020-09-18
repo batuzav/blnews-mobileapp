@@ -74,9 +74,8 @@ export const Item = ({ img, action, title, subtitle }) => {
           </Layout>
           <Layout
             style={{
-              width: 90,
+              width: 80,
               borderRadius: 9,
-              marginTop: 15,
               backgroundColor: "#ff7f2f",
               paddingHorizontal: 10,
               marginRight: 15,

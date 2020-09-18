@@ -22,6 +22,7 @@ class Account extends React.Component {
       isModalVisible: false,
       selectedCountries: this.props.user.countriesToSee,
       isSelectVisible: true,
+      img: this.props.user.img,
     };
   }
   onSelectedItemsChange = (selectedCountries) => {
@@ -166,14 +167,9 @@ class Account extends React.Component {
             <MyText style={styles.pageName}>{this.props.user.dibNumber}</MyText>
             <View style={styles.userInfo}>
               <View style={styles.avatarRow}>
-                <Image
-                  source={require("../../images/isotipo-bodylogic.png")}
-                  resizeMode="stretch"
-                  style={styles.avatar}
-                />
-                {/* {this.props.user.img !== "none" ? (
+                {this.props.user.img !== "none" ? (
                   <Image
-                    source={require({ uri: this.props.user.img })}
+                    source={{ uri: this.state.img }}
                     resizeMode="stretch"
                     style={styles.avatar}
                   />
@@ -183,7 +179,7 @@ class Account extends React.Component {
                     resizeMode="stretch"
                     style={styles.avatar}
                   />
-                )} */}
+                )}
                 <View style={styles.userEmailStack}>
                   <MyText style={styles.userEmail}>
                     {this.props.user.email}
@@ -272,7 +268,7 @@ const styles = StyleSheet.create({
     height: 409,
     position: "absolute",
     right: 450,
-    bottom: 272,
+    bottom: 300,
   },
   accountSettings: {
     height: 165,
@@ -355,7 +351,7 @@ const styles = StyleSheet.create({
   },
   sub2: {
     height: 186,
-    marginTop: 18,
+    marginTop: 0,
     marginLeft: 29,
     marginRight: 29,
   },

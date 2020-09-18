@@ -71,6 +71,7 @@ class Screen extends React.Component {
   };
   async componentDidMount() {}
   login = async () => {
+    console.log("Click");
     this.setState({ loginDisabled: true });
     await this.registerForPushNotificationsAsync();
     const obj = {
@@ -78,6 +79,8 @@ class Screen extends React.Component {
       password: this.state.inputPass,
       tokkenApp: this.state.tokkenApp,
     };
+    console.log("obj", obj);
+    console.log("this.state.tcAcept", this.state.tcAccept);
     if (
       obj.dibNumber !== "" &&
       obj.password !== "" &&

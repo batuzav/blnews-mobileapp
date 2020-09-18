@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "179728724434",
+    "firebase_url": "https://bl-news-cf9ee.firebaseio.com",
+    "project_id": "bl-news-cf9ee",
+    "storage_bucket": "bl-news-cf9ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179728724434:android:3e660103d742d5c79c180b",
+        "android_client_info": {
+          "package_name": "com.bodylogic.myblnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179728724434-hqo486rres2v6mc5f735na2jmq97i06a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8VkexxQoJxszJjc3qBUIIq22E9Wkw7XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179728724434-hqo486rres2v6mc5f735na2jmq97i06a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

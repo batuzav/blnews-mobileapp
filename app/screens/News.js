@@ -92,22 +92,22 @@ class News extends React.Component {
             backgroundColor="white"
             containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
             centerComponent={{
-              text: "MyBL-News",
+              text: "MyBL News",
               style: {
                 color: "#000",
                 fontSize: 20,
-                marginTop: -38,
+                top: -27,
                 fontWeight: "bold",
               },
             }}
-            leftContainerStyle={{ marginTop: -45 }}
+            leftContainerStyle={{ top: -27 }}
             leftComponent={{
               icon: "menu",
               color: "#000",
               onPress: () => this.toggleShowModal(),
             }}
             rightComponent={<this.HandleRendericon />}
-            rightContainerStyle={{ marginTop: -45 }}
+            rightContainerStyle={{ top: -27 }}
           />
 
           <ModalCat

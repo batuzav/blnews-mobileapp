@@ -22,7 +22,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.bodylogic.myblnews",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.bodylogic.myblnews",
+      "versionCode": 1,
+      "permissions": ["NOTIFICATIONS", "USER_FACING_NOTIFICATIONS"],
+      "googleServicesFile": "./google-services.json"
     },
     "description": ""
   }

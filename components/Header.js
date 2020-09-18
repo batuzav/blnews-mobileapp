@@ -6,17 +6,25 @@ export const StaticHeader = ({ title = "REY", leftCompnent = false }) => {
   return (
     <Header
       backgroundColor="white"
-      containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
+      containerStyle={{
+        height: 55,
+        borderBottomWidth: 0,
+        width: "100%",
+        flex: 0,
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+      }}
       centerComponent={{
         text: `${title}`,
         style: {
           color: "#000",
           fontSize: 20,
-          marginTop: -38,
           fontWeight: "bold",
+          top: -27,
         },
       }}
-      leftContainerStyle={!leftCompnent ? false : { marginTop: -45 }}
+      leftContainerStyle={!leftCompnent ? false : { top: -27 }}
       leftComponent={
         !leftCompnent ? (
           false
