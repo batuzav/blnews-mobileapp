@@ -69,7 +69,15 @@ class Screen extends React.Component {
       this.setState({ tokkenApp });
     } catch (error) {}
   };
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (Platform.OS == "android") {
+      Notifications.createChannelAndroidAsync("pushChannel", {
+        name: "pushChannel",
+        priority: "max",
+        vibrate: [0, 250, 250, 250],
+      });
+    }
+  }
   login = async () => {
     console.log("Click");
     this.setState({ loginDisabled: true });

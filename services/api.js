@@ -16,7 +16,6 @@ export const apiCall = (query, token = "") => {
     await axios
       .post(url, data, { headers })
       .then((res1) => {
-        // console.log("RES: ", res1.data.data);
         return res1;
       })
       .then((res) => resolve(res))

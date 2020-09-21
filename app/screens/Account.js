@@ -6,7 +6,7 @@ import {
   Switch,
   Image,
   Platform,
-  TouchableHighlight,
+  TouchableOpacity,
 } from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import { connect } from "react-redux";
@@ -14,6 +14,7 @@ import { Icon } from "react-native-elements";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { logout } from "../../store/actions/app";
 import { MyText } from "../../components/MyText";
+import { StaticHeader } from "../../components/Header";
 
 class Account extends React.Component {
   constructor(props) {
@@ -21,16 +22,11 @@ class Account extends React.Component {
     this.state = {
       isModalVisible: false,
       selectedCountries: this.props.user.countriesToSee,
-      isSelectVisible: true,
       img: this.props.user.img,
     };
   }
   onSelectedItemsChange = (selectedCountries) => {
     this.setState({ selectedCountries });
-  };
-  onHandleArrowSelect = () => {
-    const isSelectVisible = !this.state.isSelectVisible;
-    this.setState({ isSelectVisible });
   };
   render() {
     return (
@@ -40,7 +36,10 @@ class Account extends React.Component {
         ) : (
           <StatusBar barStyle="dark-content" backgroundColor="#ff7f2f" />
         )}
-        <View style={styles.bodyFiller}></View>
+
+        <View style={styles.bodyFiller}>
+          <StaticHeader backgroundColorHeader="transparent" />
+        </View>
         <View style={styles.body}>
           <View style={styles.ellipseStack}>
             <Svg viewBox=" 0 0 859.43 830.3" style={styles.ellipse}>
@@ -53,6 +52,7 @@ class Account extends React.Component {
                 ry={515}
               ></Ellipse>
             </Svg>
+
             <View style={styles.settingsList}>
               <View style={styles.accountSettings}>
                 <MyText style={styles.expanded}>
@@ -60,40 +60,16 @@ class Account extends React.Component {
                 </MyText>
                 <View style={styles.subSettings}>
                   <View style={styles.editProfileColumn}>
-                    <View style={styles.editProfile}>
-                      <MyText style={styles.text10}>
-                        Mostrar informaicón por países
-                      </MyText>
-                      <View style={{ flex: 1 }}></View>
-                      {this.state.isSelectVisible ? (
-                        <Icon
-                          name="arrow-down"
-                          type="material-community"
-                          style={styles.icon}
-                          onPress={this.onHandleArrowSelect}
-                        />
-                      ) : (
-                        <Icon
-                          name="arrow-up"
-                          type="material-community"
-                          style={styles.icon}
-                          onPress={this.onHandleArrowSelect}
-                        />
-                      )}
-                    </View>
                     <View style={styles.text10Filler}>
                       <SectionedMultiSelect
                         items={items}
                         uniqueKey="id"
-                        style={{ container: "50%" }}
                         colors={{
-                          subText: "#ff0000",
-                          selectToggleTextColor: "#000",
                           primary: "#ff7f2f",
+                          chipColor: "#ff7f2f",
+                          subItemBackground: "#ff7f2f",
                         }}
-                        subKey="children"
-                        selectText="Seleccione los países..."
-                        hideSelect={this.state.isSelectVisible}
+                        selectText="Cambie los paises para ver..."
                         confirmText={"Confirmar"}
                         selectedText={"Seleccionado"}
                         onSelectedItemsChange={this.onSelectedItemsChange}
@@ -149,10 +125,6 @@ class Account extends React.Component {
                 </View>
                 <View style={styles.notificationsColumnFiller}></View>
                 <View style={styles.sponsored}>
-                  <TouchableHighlight onPress={() => this.props.logout()}>
-                    <MyText style={styles.text73}>Cerrar Sesión</MyText>
-                  </TouchableHighlight>
-                  <View style={styles.text73Filler}></View>
                   {/* <Switch
                     value={false}
                     trackColor={{
@@ -164,7 +136,30 @@ class Account extends React.Component {
                 </View>
               </View>
             </View>
-            <MyText style={styles.pageName}>{this.props.user.dibNumber}</MyText>
+            <View style={styles.titleContainer}>
+              <MyText style={styles.pageName}>
+                {" "}
+                {this.props.user.dibNumber}
+              </MyText>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignSelf: "center",
+                  alignItems: "flex-end",
+                  flex: 1,
+                }}
+              >
+                <Icon
+                  name="logout"
+                  onPress={() => this.props.logout()}
+                  type="material-community"
+                  size={32}
+                  style={{ marginRight: 60, alignSelf: "flex-start" }}
+                />
+              </View>
+            </View>
+
             <View style={styles.userInfo}>
               <View style={styles.avatarRow}>
                 {this.props.user.img !== "none" ? (
@@ -232,6 +227,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   bodyFiller: {
+    top: 0,
+    zIndex: 99999,
     flex: 1,
     flexDirection: "row",
   },
@@ -271,8 +268,8 @@ const styles = StyleSheet.create({
     bottom: 300,
   },
   accountSettings: {
-    height: 165,
-    marginTop: 15,
+    height: 105,
+    marginTop: 35,
     marginLeft: 24,
     marginRight: 24,
   },
@@ -410,11 +407,18 @@ const styles = StyleSheet.create({
   switch4: {
     width: 40,
   },
-  pageName: {
+
+  titleContainer: {
+    flex: 1,
     top: 0,
+    width: 260,
     left: 85,
-    color: "#ff7f2f",
     position: "absolute",
+    flexDirection: "row",
+  },
+
+  pageName: {
+    color: "#ff7f2f",
     fontSize: 24,
   },
   userInfo: {
@@ -422,7 +426,7 @@ const styles = StyleSheet.create({
     left: 57,
     height: 125,
     position: "absolute",
-    right: 451,
+    right: 420,
     flexDirection: "row",
   },
   avatar: {

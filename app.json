@@ -29,7 +29,7 @@
     "android": {
       "package": "com.bodylogic.myblnews",
       "versionCode": 1,
-      "permissions": ["NOTIFICATIONS", "USER_FACING_NOTIFICATIONS"],
+      "permissions": ["NOTIFICATIONS", "USER_FACING_NOTIFICATIONS", "VIBRATE"],
       "googleServicesFile": "./google-services.json"
     },
     "description": ""

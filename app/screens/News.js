@@ -90,24 +90,28 @@ class News extends React.Component {
         <SafeAreaView>
           <Header
             backgroundColor="white"
-            containerStyle={{ height: 55, borderBottomWidth: 0, width: "100%" }}
+            containerStyle={{
+              paddingTop: 0,
+              borderBottomWidth: 0,
+              width: "100%",
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
             centerComponent={{
               text: "MyBL News",
               style: {
                 color: "#000",
                 fontSize: 20,
-                top: -27,
                 fontWeight: "bold",
               },
             }}
-            leftContainerStyle={{ top: -27 }}
             leftComponent={{
               icon: "menu",
               color: "#000",
               onPress: () => this.toggleShowModal(),
             }}
             rightComponent={<this.HandleRendericon />}
-            rightContainerStyle={{ top: -27 }}
           />
 
           <ModalCat

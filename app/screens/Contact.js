@@ -57,33 +57,26 @@ class Contact extends React.Component {
                     backgroundColor: "transparent",
                   }}
                 >
-                  <Card style={styles.cardModal}>
+                  <Card
+                    onPress={() =>
+                      Linking.openURL("mailto:ces@bodylogic.com.mx")
+                    }
+                    style={styles.cardModal}
+                  >
                     <Layout>
                       <MyText style={{ fontSize: 16 }}>
                         Atención a Clientes
                       </MyText>
                     </Layout>
                   </Card>
-                  <Card style={styles.cardModal}>
-                    <Layout>
-                      <MyText style={{ fontSize: 16 }}>Finanzas</MyText>
-                    </Layout>
-                  </Card>
-                  <Card style={styles.cardModal}>
+                  <Card
+                    style={styles.cardModal}
+                    onPress={() =>
+                      Linking.openURL("mailto:Etica@bodylogic.com.mx")
+                    }
+                  >
                     <Layout>
                       <MyText style={{ fontSize: 16 }}>Ética</MyText>
-                    </Layout>
-                  </Card>
-                  <Card style={styles.cardModal}>
-                    <Layout>
-                      <MyText style={{ fontSize: 16 }}>Sistemas</MyText>
-                    </Layout>
-                  </Card>
-                  <Card style={styles.cardModal}>
-                    <Layout>
-                      <MyText style={{ fontSize: 16 }}>
-                        Dirección Comercial
-                      </MyText>
                     </Layout>
                   </Card>
                 </ScrollView>

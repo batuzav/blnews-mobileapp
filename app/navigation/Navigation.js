@@ -33,11 +33,6 @@ function InnerNavigation() {
         options={{ title: "Noticias" }}
       />
       <Tab.Screen
-        name="radio"
-        component={RadioStack}
-        options={{ title: "Radio" }}
-      />
-      <Tab.Screen
         name="contact"
         component={ContactStack}
         options={{ title: "Contáctanos" }}

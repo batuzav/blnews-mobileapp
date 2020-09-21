@@ -5,6 +5,7 @@ import {
   View,
   Dimensions,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { Layout, Text, Card } from "@ui-kitten/components";
@@ -33,42 +34,31 @@ export const ModalCat = ({
       >
         <ScrollView style={{ flex: 1 }}>
           <TouchableOpacity onPress={() => CategorySelected("NUT")}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                marginBottom: 10,
-                marginTop: 10,
-                borderRadius: 5,
-                paddingVertical: 20,
-                backgroundColor: "white",
-              }}
-            >
+            <View style={style.list}>
               <View style={{ justifyContent: "center", marginLeft: 15 }}>
                 <View style={{ flexDirection: "row" }}>
                   <Icon
                     name="food-apple"
                     type="material-community"
                     color={Selected === "NUT" ? selectedColor : defaultColor}
-                    r
                   />
-                  <Text style={{ fontSize: 20, marginLeft: 5 }}>Nutrición</Text>
+                  <Text
+                    style={[
+                      style.fontList,
+                      {
+                        color:
+                          Selected === "NUT" ? selectedColor : defaultColor,
+                      },
+                    ]}
+                  >
+                    Nutrición
+                  </Text>
                 </View>
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => CategorySelected("NOT")}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                marginBottom: 10,
-                marginTop: 10,
-                borderRadius: 5,
-                paddingVertical: 20,
-                backgroundColor: "white",
-              }}
-            >
+            <View style={style.list}>
               <View style={{ justifyContent: "center", marginLeft: 15 }}>
                 <View style={{ flexDirection: "row" }}>
                   <Icon
@@ -76,23 +66,23 @@ export const ModalCat = ({
                     type="material-community"
                     color={Selected === "NOT" ? selectedColor : defaultColor}
                   />
-                  <Text style={{ fontSize: 20, marginLeft: 5 }}>Noticias</Text>
+                  <Text
+                    style={[
+                      style.fontList,
+                      {
+                        color:
+                          Selected === "NOT" ? selectedColor : defaultColor,
+                      },
+                    ]}
+                  >
+                    Noticias
+                  </Text>
                 </View>
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => CategorySelected("PRO")}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                marginBottom: 10,
-                marginTop: 10,
-                borderRadius: 5,
-                paddingVertical: 20,
-                backgroundColor: "white",
-              }}
-            >
+            <View style={style.list}>
               <View style={{ justifyContent: "center", marginLeft: 15 }}>
                 <View style={{ flexDirection: "row" }}>
                   <Icon
@@ -100,23 +90,23 @@ export const ModalCat = ({
                     type="material-community"
                     color={Selected === "PRO" ? selectedColor : defaultColor}
                   />
-                  <Text style={{ fontSize: 20, marginLeft: 5 }}>Promoción</Text>
+                  <Text
+                    style={[
+                      style.fontList,
+                      {
+                        color:
+                          Selected === "PRO" ? selectedColor : defaultColor,
+                      },
+                    ]}
+                  >
+                    Promoción
+                  </Text>
                 </View>
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => CategorySelected("TOD")}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                marginBottom: 10,
-                marginTop: 10,
-                borderRadius: 5,
-                paddingVertical: 20,
-                backgroundColor: "white",
-              }}
-            >
+            <View style={style.list}>
               <View style={{ justifyContent: "center", marginLeft: 15 }}>
                 <View style={{ flexDirection: "row" }}>
                   <Icon
@@ -124,7 +114,17 @@ export const ModalCat = ({
                     type="material-community"
                     color={Selected === "TOD" ? selectedColor : defaultColor}
                   />
-                  <Text style={{ fontSize: 20, marginLeft: 5 }}>Todos</Text>
+                  <Text
+                    style={[
+                      style.fontList,
+                      {
+                        color:
+                          Selected === "TOD" ? selectedColor : defaultColor,
+                      },
+                    ]}
+                  >
+                    Todos
+                  </Text>
                 </View>
               </View>
             </View>
@@ -144,3 +144,16 @@ export const ModalCat = ({
     </Layout>
   );
 };
+
+const style = StyleSheet.create({
+  list: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    marginBottom: 5,
+    marginTop: 5,
+    borderRadius: 5,
+    paddingVertical: 20,
+    backgroundColor: "white",
+  },
+  fontList: { fontSize: 18, marginLeft: 5 },
+});

@@ -1,19 +1,23 @@
 import React from "react";
 import { Header, Icon } from "react-native-elements";
 
-export const StaticHeader = ({ title = "REY", leftCompnent = false }) => {
+export const StaticHeader = ({
+  title = "REY",
+  leftCompnent = false,
+  backgroundColorHeader = "white",
+}) => {
   console.log("leftComponent", leftCompnent);
   return (
     <Header
-      backgroundColor="white"
+      backgroundColor={backgroundColorHeader}
       containerStyle={{
-        height: 55,
+        height: 50,
         borderBottomWidth: 0,
+        paddingTop: 0,
         width: "100%",
         flex: 0,
+        flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
-        alignContent: "center",
       }}
       centerComponent={{
         text: `${title}`,
@@ -21,10 +25,8 @@ export const StaticHeader = ({ title = "REY", leftCompnent = false }) => {
           color: "#000",
           fontSize: 20,
           fontWeight: "bold",
-          top: -27,
         },
       }}
-      leftContainerStyle={!leftCompnent ? false : { top: -27 }}
       leftComponent={
         !leftCompnent ? (
           false
