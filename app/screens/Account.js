@@ -176,9 +176,6 @@ class Account extends React.Component {
                   />
                 )}
                 <View style={styles.userEmailStack}>
-                  <MyText style={styles.userEmail}>
-                    {this.props.user.email}
-                  </MyText>
                   <MyText style={styles.userName}>
                     {this.props.user.firstName} {"\n"}
                     {this.props.user.lastName}

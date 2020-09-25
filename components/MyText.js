@@ -16,7 +16,7 @@ export const H1 = (props) => {
       style={[
         {
           fontFamily: "body-logic",
-          fontSize: Platform.OS === "ios" ? 19 : 24,
+          fontSize: Platform.OS === "ios" ? 20 : 24,
         },
         props.style,
       ]}
