@@ -1,5 +1,6 @@
 import { apiCall } from "../../services/api";
 import { getCampaignByIdQuery } from "../../services/campaigns";
+import { logout } from "./app";
 
 const oneCampaignSuccess = (payload) => ({
   type: "CAMPAIGN_UPDATE",
@@ -15,6 +16,9 @@ export const getCampaignById = (id) => {
         // console.log("RESPONSE: ", response.data.data);
         dispatch(oneCampaignSuccess(response.data.data.getCampaignById));
       } else if (response.errors) {
+        if (response.errors[0].message === "Unauthorized") {
+          dispatch(logout());
+        }
         console.log(
           "get Campaigns Response error: ",
           response.errors[0].message

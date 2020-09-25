@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "MyBL-News",
+    "name": "MyBL News",
     "slug": "my-blnews",
     "extra": {
-      "serverUrl": "http://mybl-news-be.herokuapp.com"
+      "serverUrl": "http://35.222.231.103"
     },
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",

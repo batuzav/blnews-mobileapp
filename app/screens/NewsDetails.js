@@ -20,8 +20,10 @@ class NewsDetails extends React.Component {
     this.state = {};
   }
   componentDidMount() {
-    const index = this.props.route.params.index;
-    const list = this.props.list[index]._id;
+    let list = "";
+    !this.props.route.params.campaignId
+      ? (list = this.props.list[this.props.route.params.index]._id)
+      : (list = this.props.route.params.campaignId);
     this.getCampaignData(list);
   }
   getCampaignData = (id) => {

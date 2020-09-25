@@ -14,6 +14,7 @@ import {
 import { Layout, Text, Card, Button } from "@ui-kitten/components";
 import { Item } from "../../components/Campaigns";
 import { ModalCat } from "../../components/Modal";
+import { Notifications } from "expo";
 
 class News extends React.Component {
   constructor(props) {
@@ -26,6 +27,11 @@ class News extends React.Component {
   }
   async componentDidMount() {
     this.getAllCampaigns();
+    Notifications.addListener((notification) => {
+      const { campaignId } = notification.data;
+      this.props.navigation.navigate("newsDetails", { campaignId });
+      // send user to screen
+    });
   }
   toggleShowModal = () => {
     const showModal = !this.state.showModal;

@@ -89,12 +89,7 @@ class Screen extends React.Component {
     };
     console.log("obj", obj);
     console.log("this.state.tcAcept", this.state.tcAccept);
-    if (
-      obj.dibNumber !== "" &&
-      obj.password !== "" &&
-      obj.tokkenApp !== "" &&
-      this.state.tcAccept === true
-    ) {
+    if (obj.dibNumber !== "" && obj.password !== "" && obj.tokkenApp !== "") {
       console.log("GOLA");
       this.props.loginapi(obj);
     }
@@ -179,22 +174,11 @@ class Screen extends React.Component {
                   )}
                 />
               </KeyboardAvoidingView>
-              <CheckBox
-                center
-                title="Acepto terminos y condiciones."
-                checked={this.state.tcAccept}
-                onPress={this.handleCheckChange}
-                containerStyle={{
-                  backgroundColor: "transparent",
-                  borderColor: "transparent",
-                }}
-                textStyle={{ color: "#000" }}
-                checkedColor="#ff7f2f"
-              />
+
               <TouchableOpacity onPress={this.goToRegister}>
                 <MyText
                   style={{
-                    fontSize: 18,
+                    fontSize: 22,
                     textDecorationLine: "underline",
                     textDecorationStyle: "solid",
                     textDecorationColor: "#000",
@@ -224,19 +208,6 @@ class Screen extends React.Component {
               )}
               <Text style={{ color: "blue" }}>{errorMsg}</Text>
             </View>
-
-            {/* <View style={{ alignItems: "center", marginTop: 20 }}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("AuthResetPass")}
-            >
-              <Text>Recuperar contraseña</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("AuthRegister")}
-            >
-              <Text>Crear cuenta</Text>
-            </TouchableOpacity>
-          </View>*/}
           </View>
         </ImageBackground>
       </ApplicationProvider>

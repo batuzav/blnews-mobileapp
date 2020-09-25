@@ -3,6 +3,7 @@ import {
   getCampaignsQuery,
   getCampaignByCategoryQuery,
 } from "../../services/campaigns";
+import { logout } from "./app";
 
 const campaignSuccess = (payload) => ({
   type: "CAMPAIGNS_SUCCESS",
@@ -17,6 +18,9 @@ export const getCampaigns = () => {
       if (response.data.data) {
         dispatch(campaignSuccess(response.data.data.Campaigns));
       } else if (response.errors) {
+        if (response.errors[0].message === "Unauthorized") {
+          dispatch(logout());
+        }
         console.log(
           "get Campaigns Response error: ",
           response.errors[0].message
@@ -40,6 +44,9 @@ export const getCampaignsByCategory = (category) => {
       if (response.data.data) {
         dispatch(campaignSuccess(response.data.data.getCampaignsByCategory));
       } else if (response.errors) {
+        if (response.errors[0].message === "Unauthorized") {
+          dispatch(logout());
+        }
         console.log(
           "get Campaigns Response error: ",
           response.errors[0].message
