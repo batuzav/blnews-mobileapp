@@ -5,7 +5,11 @@
     "extra": {
       "serverUrl": "http://35.222.231.103"
     },
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "notification": {
@@ -20,7 +24,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.bodylogic.myblnews",
       "buildNumber": "1.0.0",
@@ -29,7 +35,11 @@
     "android": {
       "package": "com.bodylogic.myblnews",
       "versionCode": 1,
-      "permissions": ["NOTIFICATIONS", "USER_FACING_NOTIFICATIONS", "VIBRATE"],
+      "permissions": [
+        "NOTIFICATIONS",
+        "USER_FACING_NOTIFICATIONS",
+        "VIBRATE"
+      ],
       "googleServicesFile": "./google-services.json"
     },
     "description": ""
